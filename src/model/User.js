@@ -1,12 +1,18 @@
 module.exports = (sequelize, type) => {
-  return sequelize.define("user", {
+  const user = sequelize.define("user", {
     id: {
       type: type.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    username: type.STRING,
-    email: type.STRING,
+    username: {
+      type: type.STRING,
+      unique: true,
+    },
+    email: {
+      type: type.STRING,
+      unique: true,
+    },
     first_name: type.STRING,
     last_name: type.STRING,
     password: type.STRING,
@@ -28,4 +34,13 @@ module.exports = (sequelize, type) => {
     },
     role: type.STRING,
   });
+
+  user.prototype.toJSON = function () {
+    var values = Object.assign({}, this.get());
+
+    delete values.password;
+    return values;
+  };
+  
+  return user;
 };

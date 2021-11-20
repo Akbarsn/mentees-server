@@ -52,9 +52,9 @@ Room.belongsTo(ChatHistory);
 User.hasMany(ChatHistory);
 ChatHistory.belongsTo(User);
 
-sequelize.sync({ force: true }).then(() => {
-  log.info("[DB] Migration completed");
-});
+// sequelize.sync({ force: true }).then(() => {
+//   log.info("[DB] Migration completed");
+// });
 
 module.exports = {
   User,

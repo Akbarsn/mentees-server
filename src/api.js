@@ -1,23 +1,24 @@
+const log = require("./infra/log/winston")
+
 module.exports = {
   Serve: () => {
     const express = require("express");
     const cors = require("cors");
-    const envDriver = require("./infra/env/env_driver");
-    const log = require("./infra/log/winston")
+    const {handleErrors, handleNotFound} = require("./middleware/error_handler")
+    const appEnv = require("./infra/env/env_driver").GetAppEnv()
 
     const app = express();
 
-    app.use(express.json());
-    app.use(cors());
+    app.use(express.json())
+    app.use(express.urlencoded({ extended: true }))
 
-    const dbEnv = envDriver.GetDBEnv();
-    const appEnv = envDriver.GetAppEnv();
+    app.options('*', cors())
+    app.use(cors())
 
-    const {} = require('./model')
+    app.use(require("./route"))
 
-    app.get("/", (req, res) => {
-      res.json({ message: "Hello World!" });
-    });
+    app.use(handleErrors)
+    app.use(handleNotFound)
 
     app.listen(appEnv.Port, () => {
       log.info(`[App] Running at :${appEnv.Port}`)

@@ -18,7 +18,14 @@ const GetAppEnv = () => {
   };
 };
 
+const GetJWTEnv = () => {
+  return {
+    Secret: process.env.JWT_SECRET,
+  };
+};
+
 module.exports = {
   GetAppEnv,
   GetDBEnv,
+  GetJWTEnv,
 };
