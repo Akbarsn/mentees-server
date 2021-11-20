@@ -36,6 +36,7 @@ const Question = QuestionrModel(sequelize, Sequelize);
 const Room = RoomModel(sequelize, Sequelize);
 const ChatHistory = ChatHistoryModel(sequelize, Sequelize);
 const UserHistory = UserHistoryModel(sequelize, Sequelize);
+const MentoringRequest = sequelize.define('mentoring_request', {})
 
 User.hasMany(Question);
 Question.belongsTo(User);
@@ -51,6 +52,9 @@ Room.belongsTo(ChatHistory);
 
 User.hasMany(ChatHistory);
 ChatHistory.belongsTo(User);
+
+User.belongsToMany(User, {through: MentoringRequest, as: 'to'})
+User.belongsToMany(User, {through: MentoringRequest, as: 'from'})
 
 // sequelize.sync({ force: true }).then(() => {
 //   log.info("[DB] Migration completed");
