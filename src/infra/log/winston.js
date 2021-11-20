@@ -1,15 +1,18 @@
 const winston = require('winston');
 
+var path = require('path');
+var appDir = path.dirname(require.main.filename);
+
 const logger = new winston.createLogger({
     level: 'info',
     format: winston.format.json(),
     transports: [
         new winston.transports.File({
-            filename: '../../logs/error.log',
+            filename: `${appDir}/logs/error.log`,
             level: 'error'
         }),
         new winston.transports.File({
-            filename: '../../logs/common.log'
+            filename: `${appDir}/logs/common.log`
         })
     ]
 })

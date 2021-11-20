@@ -3,6 +3,7 @@ module.exports = {
     const express = require("express");
     const cors = require("cors");
     const envDriver = require("./infra/env/env_driver");
+    const log = require("./infra/log/winston")
 
     const app = express();
 
@@ -12,14 +13,14 @@ module.exports = {
     const dbEnv = envDriver.GetDBEnv();
     const appEnv = envDriver.GetAppEnv();
 
-    
+    const {} = require('./model')
 
     app.get("/", (req, res) => {
       res.json({ message: "Hello World!" });
     });
 
     app.listen(appEnv.Port, () => {
-      console.log(`Listening to port :${8080}`);
+      log.info(`[App] Running at :${appEnv.Port}`)
     });
   },
 };

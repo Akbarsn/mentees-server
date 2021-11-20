@@ -2,19 +2,19 @@ require("dotenv").config();
 
 const GetDBEnv = () => {
   return {
-    Dialect: process.env.DBDialect,
-    Username: process.env.DBUsername,
-    Password: process.env.DBPassword,
-    Name: process.env.DBName,
-    Host: process.env.DBHost,
-    Port: process.env.DBPort,
+    Dialect: process.env.DB_DIALECT,
+    Username: process.env.DB_USERNAME,
+    Password: process.env.DB_PASSWORD,
+    Name: process.env.DB_NAME,
+    Host: process.env.DB_HOST,
+    Port: process.env.DB_PORT,
   };
 };
 
 const GetAppEnv = () => {
   return {
-    Mode: process.env.Mode,
-    Port: process.env.Port,
+    Mode: process.env.MODE,
+    Port: process.env.PORT,
   };
 };
 
