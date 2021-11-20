@@ -20,6 +20,11 @@ module.exports = (sequelize, type) => {
     birth_date: type.DATE,
     nationality: type.STRING,
     current_study: type.STRING,
+    university: type.STRING,
+    major: {
+      type: type.STRING,
+      allowNull: false,
+    },
     interest: {
       type: type.STRING,
       allowNull: true,
@@ -28,7 +33,7 @@ module.exports = (sequelize, type) => {
       type: type.STRING,
       allowNull: true,
     },
-    job: {
+    skill: {
       type: type.STRING,
       allowNull: true,
     },

@@ -5,9 +5,7 @@ module.exports = (sequelize, type) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      questioner: type.INTEGER,
-      answerer: type.INTEGER,
-      type: type.STRING,
+      message: type.INTEGER,
     });
   };
   

@@ -64,7 +64,6 @@ module.exports = {
         };
 
         const response = await User.create(objToSave);
-        console.log(response);
         if (response) {
           return SuccessResponse(res, objToSave);
         } else {
