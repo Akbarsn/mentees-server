@@ -1,3 +1,4 @@
+const sequelize = require("sequelize");
 const { User, MentoringRequest, Room, UserHistory } = require("../model");
 const validator = require("../validator/mentor.validator");
 const log = require("../infra/log/winston");
@@ -90,6 +91,75 @@ module.exports = {
     }
   },
 
+  GetMentorList: async (req, res, next) => {
+    log.info("[Service] Get list mentor");
+
+    try {
+      const mentors = await MentoringRequest.findAll({
+        where: {
+          mentee_id: req.user.id,
+          status: "Accept",
+        }
+      });
+
+      const users = await User.findAll({
+        where: {
+          id: mentors.map((e) => e.mentor_id),
+        },
+      });
+
+      return SuccessResponse(res, users);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  GetMenteeList: async (req, res, next) => {
+    log.info("[Service] Get list mentee");
+
+    try {
+      const mentors = await MentoringRequest.findAll({
+        where: {
+          mentor_id: req.user.id,
+          status: "Accept",
+        }
+      });
+
+      const users = await User.findAll({
+        where: {
+          id: mentors.map((e) => e.mentee_id),
+        },
+      });
+
+      return SuccessResponse(res, users);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  GetPendingMenteeRequest: async (req, res, next) => {
+    log.info("[Service] Get list pending mentee");
+
+    try {
+      const mentors = await MentoringRequest.findAll({
+        where: {
+          mentor_id: req.user.id,
+          status: "Waiting",
+        },
+      });
+
+      const users = await User.findAll({
+        where: {
+          id: mentors.map((e) => e.mentee_id),
+        },
+      });
+
+      return SuccessResponse(res, users);
+    } catch (error) {
+      next(error);
+    }
+  },
+
   SendRequest: async (req, res, next) => {
     log.info("[Service] Send Request");
 
@@ -113,6 +183,7 @@ module.exports = {
       next(error);
     }
   },
+
   AnswerRequest: async (req, res, next) => {
     log.info("[Service] Accept Request");
 

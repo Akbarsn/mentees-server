@@ -85,73 +85,73 @@ User.belongsToMany(User, {
   foreignKey: "mentor_id",
 });
 
-sequelize.sync({ force: true }).then(() => {
-  log.info("[DB] Migration completed");
+// sequelize.sync({ force: true }).then(() => {
+//   log.info("[DB] Migration completed");
 
-  User.bulkCreate([
-    {
-      username: "akbarsn",
-      email: "personal.akbarsn@gmail.com",
-      first_name: "Akbar",
-      last_name: "Nugraha",
-      password: bcrypt.hashSync("123dev", 12),
-      gender: "Male",
-      birth_date: moment("2000-03-25"),
-      nationality: "Indonesian",
-      current_study: "Bachelor",
-      university: "Universitas Brawijaya",
-      major: "Comp Science",
-      interest: "A|B|C|D",
-      skill: "A|B|C|D",
-      achievement: null,
-      bio: "This is bio",
-      role: "Mentee",
-    },
-    {
-      username: "johndoe",
-      email: "johndoe@gmail.com",
-      first_name: "John",
-      last_name: "Doe",
-      password: bcrypt.hashSync("123dev", 12),
-      gender: "Male",
-      birth_date: moment("2000-03-25"),
-      nationality: "Indonesian",
-      current_study: "Master",
-      university: "Universitas Brawijaya",
-      major: "Comp Science",
-      interest: "C|D",
-      skill: "A|B",
-      achievement: null,
-      bio: "This is bio",
-      role: "Mentor",
-    },
-    {
-      username: "budi",
-      email: "budi@gmail.com",
-      first_name: "Budi",
-      last_name: "-",
-      password: bcrypt.hashSync("123dev", 12),
-      gender: "Male",
-      birth_date: moment("2000-03-25"),
-      nationality: "Indonesian",
-      current_study: "Master",
-      university: "Universitas Brawijaya",
-      major: "Comp Science",
-      interest: "A",
-      skill: "D",
-      achievement: null,
-      bio: "This is bio",
-      role: "Mentor",
-    },
-  ])
-    .then(() => {
-      log.info("[DB] Seeding success");
-    })
-    .catch((err) => {
-      console.log(err);
-      log.error("[DB] Seeding failed");
-    });
-});
+//   User.bulkCreate([
+//     {
+//       username: "akbarsn",
+//       email: "personal.akbarsn@gmail.com",
+//       first_name: "Akbar",
+//       last_name: "Nugraha",
+//       password: bcrypt.hashSync("123dev", 12),
+//       gender: "Male",
+//       birth_date: moment("2000-03-25"),
+//       nationality: "Indonesian",
+//       current_study: "Bachelor",
+//       university: "Universitas Brawijaya",
+//       major: "Comp Science",
+//       interest: "A|B|C|D",
+//       skill: "A|B|C|D",
+//       achievement: null,
+//       bio: "This is bio",
+//       role: "Mentee",
+//     },
+//     {
+//       username: "johndoe",
+//       email: "johndoe@gmail.com",
+//       first_name: "John",
+//       last_name: "Doe",
+//       password: bcrypt.hashSync("123dev", 12),
+//       gender: "Male",
+//       birth_date: moment("2000-03-25"),
+//       nationality: "Indonesian",
+//       current_study: "Master",
+//       university: "Universitas Brawijaya",
+//       major: "Comp Science",
+//       interest: "C|D",
+//       skill: "A|B",
+//       achievement: null,
+//       bio: "This is bio",
+//       role: "Mentor",
+//     },
+//     {
+//       username: "budi",
+//       email: "budi@gmail.com",
+//       first_name: "Budi",
+//       last_name: "-",
+//       password: bcrypt.hashSync("123dev", 12),
+//       gender: "Male",
+//       birth_date: moment("2000-03-25"),
+//       nationality: "Indonesian",
+//       current_study: "Master",
+//       university: "Universitas Brawijaya",
+//       major: "Comp Science",
+//       interest: "A",
+//       skill: "D",
+//       achievement: null,
+//       bio: "This is bio",
+//       role: "Mentor",
+//     },
+//   ])
+//     .then(() => {
+//       log.info("[DB] Seeding success");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       log.error("[DB] Seeding failed");
+//     });
+// });
 
 module.exports = {
   User,
