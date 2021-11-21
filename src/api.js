@@ -6,6 +6,7 @@ module.exports = {
     const cors = require("cors");
     const socketio = require('socketio');
     const {handleErrors, handleNotFound} = require("./middleware/error_handler")
+    const http = require('http');
     const appEnv = require("./infra/env/env_driver").GetAppEnv()
     const server = http.createServer(app);
 
